@@ -1,4 +1,16 @@
 # Hi, I'm bones
+To do:
+- make db models [done]
+  - users [done]
+  - ideas (things) [done]
+- make middleware routes
+  - adding an idea
+  - fetching all ideas
+  - fetching all user ideas
+- make reducer for ideas
+  - set ideas to state
+
+
 
 I'm a happy little skeleton. You can clone me to use as a starter on your projects!
 I have React, Redux, Sequelize, and Express all just rattling around in here ready

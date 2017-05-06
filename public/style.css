@@ -1,0 +1,107 @@
+/*
+COLOR SHEME
+Carmine pink: #E54B4B
+Vivid tangerine: #FFA987
+Linen: #F7EBE8
+Rifle green: #444140
+Rasin black: #1E1E24
+*/
+
+body {
+    background-color: #F7EBE8;
+}
+
+.container {
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.center {
+    text-align: center;
+}
+
+.center * {
+    text-align: center;
+}
+
+.single-img {
+    display: block;
+}
+
+.small-top-pad {
+    padding-top: 1%;
+}
+
+.new-line {
+    display: block;
+    padding-left: 35%;
+    padding-right: 35%;
+}
+
+.dropzone {
+    width: 30vw;
+    height: 10vh;
+    border-width: 2px;
+    border-color: rgb(102, 102, 102);
+    border-style: dashed;
+    border-radius: 5px;
+}
+
+.signup-btn {
+    /*background-color: #FFA987;*/
+    border: transparent;
+    border-radius: 10px;
+}
+
+.table-padding {
+    margin-right: 5vw;
+    margin-left: 5vw;
+    width: 90vw;
+}
+
+thead {
+    background-color: #1A5E63;
+    color: white;
+}
+
+tbody {
+    background-color: #00BFB2 !important;
+}
+
+
+/*.new-line {
+    padding-bottom: 1%;
+}*/
+
+.new-btn-line {
+    display: block;
+    padding-left: 92%;
+    /*float: right;*/
+    padding-right: 3%;
+    margin-bottom: 5vh;
+}
+
+.add-button {
+    float: left;
+    border-radius: 25px;
+    /*padding: 0;*/
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 2%;
+    font-size: small;
+}
+
+.add-idea-form {
+    margin: 3%;
+}
+
+
+/*.signup-btn:hover {
+    background-color: red;
+}
+
+.signup-btn:active {
+    background-color: blue;
+}*/
