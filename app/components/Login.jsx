@@ -19,6 +19,9 @@ const Login = ({ login }) => (
         <label className="control-label">Password</label>
         <input type="password" className="form-control" id="inputDefault" />
       </div>
+      <div className='center'>
+        <button type='submit'>Login</button>
+      </div>
       <p>Or, <Link to='/signup'>create an account</Link>.</p>
     </form>
   </div>

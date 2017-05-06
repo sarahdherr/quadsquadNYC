@@ -4,11 +4,9 @@ import AddIdea from './AddIdea'
 export default class extends React.Component {
   constructor(props) {
     super(props)
-    
     this.state = {
       showAdd: false
     }
-
     this.handleShowAdd = this.handleShowAdd.bind(this)
   }
 
