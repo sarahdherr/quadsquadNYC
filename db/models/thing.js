@@ -5,7 +5,8 @@ const { STRING, DATE } = require('sequelize')
 module.exports = db => db.define('things', {
     name: STRING,
     category: STRING,
-    when: DATE,
+    start: DATE,
+    end: DATE,
     where: STRING,
     price: STRING
 })

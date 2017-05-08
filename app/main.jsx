@@ -13,6 +13,9 @@ import LogoutContainer from './containers/LogoutContainer'
 import NotFound from './components/NotFound'
 import Home from './components/Home'
 import Ideas from './components/Ideas'
+import AppContainer from './containers/AppContainer'
+
+import { fetchIdeas } from './reducers/idea'
 
 /* const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -26,14 +29,19 @@ import Ideas from './components/Ideas'
     </div>
 ) */
 
+const onIdeasEnter = (nextRouterState) => {
+  store.dispatch(fetchIdeas())
+}
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path='/' component={Home}>
+      <Route path='/' component={AppContainer}>
+        <Route path='/home' component={Home} />
         <Route path='/login' component={LoginContainer} />
         <Route path='/signup' component={SignupContainer} />
         <Route path='/logout' component={LogoutContainer} />
-        <Route path='/ideas' component={Ideas} />
+        <Route path='/ideas' component={Ideas} onEnter={onIdeasEnter} />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

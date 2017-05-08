@@ -17,16 +17,12 @@ export const stockIdeas = ideas => ({
   type: STOCK_IDEAS, ideas
 })
 
-export const signup = (user) =>
-  dispatch =>
-    axios.post('api/users', user)
-      .then(() => dispatch(whoami()))
-      .catch(err => console.error(err))
-
 export const fetchIdeas = () =>
-  dispatch =>
+  dispatch => {
+    console.log('got inside fetchIdeas')
     axios.get('/api/ideas')
       .then(ideas => dispatch(stockIdeas(ideas)))
       .catch(err => console.error(err))
+  }
 
 export default reducer

@@ -9,20 +9,20 @@ const Login = ({ login }) => (
     </div>
     <form className='col-lg-12 small-top-pad' onSubmit={evt => {
       evt.preventDefault()
-      login(evt.target.username.value, evt.target.password.value)
+      login(evt.target.email.value, evt.target.password.value)
     } }>
-      <div className="form-group new-line">
-        <label className="control-label">Email</label>
-        <input type="text" className="form-control" id="inputDefault" />
+      <div className='form-group new-line'>
+        <label className='control-label'>Email</label>
+        <input type='text' name='email' className='form-control' id='inputDefault' />
       </div>
-      <div className="form-group new-line">
-        <label className="control-label">Password</label>
-        <input type="password" className="form-control" id="inputDefault" />
+      <div className='form-group new-line'>
+        <label className='control-label'>Password</label>
+        <input type='password' name='password' className='form-control' id='inputDefault' />
       </div>
       <div className='center'>
-        <button type='submit'>Login</button>
+        <button className='btn btn-primary signup-btn' type='submit'>Login</button>
       </div>
-      <p>Or, <Link to='/signup'>create an account</Link>.</p>
+      <p className='or'>Or, <Link to='/signup'>create an account</Link>.</p>
     </form>
   </div>
 )

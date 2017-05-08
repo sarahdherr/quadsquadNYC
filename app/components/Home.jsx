@@ -1,11 +1,8 @@
 import React from 'react'
 
-import NavbarContainer from '../containers/NavbarContainer'
-
 export default (props) =>
-    <div>
-      <NavbarContainer />
-      {
-        props.children
-      }
-    </div>
+  <div className='center'>
+    <h2>Quad Squad take New York City</h2>
+    <img className='home-pic' src='/quadsquad.jpg' />
+    <h4>June 1-5, 2017</h4>
+  </div>

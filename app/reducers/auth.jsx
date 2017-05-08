@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { browserHistory } from 'react-router'
 
 const reducer = (state=null, action) => {
   switch (action.type) {
@@ -16,14 +17,16 @@ export const authenticated = user => ({
 export const signup = (user) =>
   dispatch =>
     axios.post('api/users', user)
-      .then(() => dispatch(whoami()))
-      .catch(() => dispatch(whoami()))
+      .then(user => dispatch(login(user.email, user.password)))
+      .then(() => browserHistory.push('/ideas'))
+      .catch(err => console.error(err))
 
 export const login = (username, password) =>
   dispatch =>
     axios.post('/api/auth/login/local',
       {username, password})
       .then(() => dispatch(whoami()))
+      .then(() => browserHistory.push('/ideas'))
       .catch(() => dispatch(whoami()))
 
 export const logout = () =>

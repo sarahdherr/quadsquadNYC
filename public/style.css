@@ -97,6 +97,17 @@ tbody {
     margin: 3%;
 }
 
+.home-pic {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 40vw;
+}
+
+.or {
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+
 
 /*.signup-btn:hover {
     background-color: red;
