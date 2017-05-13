@@ -1,4 +1,7 @@
 import React from 'react'
+import store from '../store'
+import {stockIdeas} from '../reducers/idea'
+import axios from 'axios'
 
 export default class extends React.Component {
   constructor(props) {
@@ -17,7 +20,14 @@ export default class extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    console.lot(this.state)
+    console.log(this.state)
+    axios.post('/api/ideas', this.state)
+      .then(idea => {
+        axios.get('/api/ideas')
+          .then(ideas => store.dispatch(stockIdeas(ideas.data)))
+          .catch(err => console.error(err))
+      })
+      .catch(err => console.error(err))
   }
 
   render() {

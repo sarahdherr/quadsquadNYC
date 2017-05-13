@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 
 export default (props) => {
-  console.log(props)
+  // console.log(props)
   return (
     <nav className="navbar navbar-default">
     <div className="container-fluid">

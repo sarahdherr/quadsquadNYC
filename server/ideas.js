@@ -7,9 +7,15 @@ module.exports = require('express').Router()
     .get('/', (req, res, next) => {
         Thing.findAll()
             .then(ideas => {
-                console.log('these are from the db', ideas.data)
-                return ideas
+                console.log('these are from the db', ideas)
+                res.send(ideas)
             })
-            .then(ideas => res.send(ideas.data))
-            .catch(err => console.error(err))
+            // .then(ideas => res.send(ideas.data))
+            .catch(next)
     })
+
+.post('/', (req, res, next) => {
+    Thing.create(req.body)
+        .then(idea => res.sendStatus(204))
+        .catch(next)
+})

@@ -17,12 +17,4 @@ export const stockIdeas = ideas => ({
   type: STOCK_IDEAS, ideas
 })
 
-export const fetchIdeas = () =>
-  dispatch => {
-    console.log('got inside fetchIdeas')
-    axios.get('/api/ideas')
-      .then(ideas => dispatch(stockIdeas(ideas)))
-      .catch(err => console.error(err))
-  }
-
 export default reducer

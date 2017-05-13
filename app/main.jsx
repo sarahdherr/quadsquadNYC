@@ -3,6 +3,7 @@ import React from 'react'
 import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
 import { render } from 'react-dom'
 import { connect, Provider } from 'react-redux'
+import axios from 'axios'
 
 import store from './store'
 // import Jokes from './components/Jokes'
@@ -12,10 +13,10 @@ import LogoutContainer from './containers/LogoutContainer'
 // import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import Home from './components/Home'
-import Ideas from './components/Ideas'
+import IdeasContainer from './containers/IdeasContainer'
 import AppContainer from './containers/AppContainer'
 
-import { fetchIdeas } from './reducers/idea'
+import { stockIdeas } from './reducers/idea'
 
 /* const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
@@ -30,7 +31,9 @@ import { fetchIdeas } from './reducers/idea'
 ) */
 
 const onIdeasEnter = (nextRouterState) => {
-  store.dispatch(fetchIdeas())
+  axios.get('/api/ideas')
+    .then(ideas => store.dispatch(stockIdeas(ideas.data)))
+    .catch(err => console.error(err))
 }
 
 render(
@@ -41,7 +44,8 @@ render(
         <Route path='/login' component={LoginContainer} />
         <Route path='/signup' component={SignupContainer} />
         <Route path='/logout' component={LogoutContainer} />
-        <Route path='/ideas' component={Ideas} onEnter={onIdeasEnter} />
+        <Route path='/ideas' component={IdeasContainer} onEnter={onIdeasEnter} />
+        <IndexRedirect to='/home' />
       </Route>
       <Route path='*' component={NotFound} />
     </Router>

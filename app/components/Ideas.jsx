@@ -18,6 +18,7 @@ export default class extends React.Component {
   }
 
   render() {
+    console.log('props in ideas', this.props)
     return (
       <div>
         <h2 className='center'>All The Ideas</h2>
@@ -45,6 +46,21 @@ export default class extends React.Component {
             </tr>
           </thead>
           <tbody>
+            {
+              this.props.ideas.length && this.props.ideas.map((idea, idx) => {
+                return (
+                  <tr key={idea.id}>
+                    <td>{idx}</td>
+                    <td>{idea.category}</td>
+                    <td>{idea.name}</td>
+                    <td>{idea.start} to {idea.end}</td>
+                    <td>{idea.where}</td>
+                    <td>{idea.price}</td>
+                  </tr>
+                )
+              } )
+            }
+            
             <tr>
               <td>1</td>
               <td>Column content</td>
