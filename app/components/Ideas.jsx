@@ -1,5 +1,9 @@
 import React from 'react'
 import AddIdea from './AddIdea'
+import store from '../store'
+import {stockIdeas} from '../reducers/idea'
+import axios from 'axios'
+import strftime from 'strftime'
 
 export default class extends React.Component {
   constructor(props) {
@@ -7,18 +11,27 @@ export default class extends React.Component {
     this.state = {
       showAdd: false
     }
-    this.handleShowAdd = this.handleShowAdd.bind(this)
   }
 
-  handleShowAdd(evt) {
+  handleShowAdd = (evt) => {
     evt.preventDefault()
     this.setState({
       showAdd: !this.state.showAdd
     })
   }
 
+  handleSubmitAdd = (newIdea) => {
+    axios.post('/api/ideas', newIdea)
+      .then(idea => {
+        axios.get('/api/ideas')
+          .then(ideas => store.dispatch(stockIdeas(ideas.data)))
+          .catch(err => console.error(err))
+      })
+      .then(() => this.setState({ showAdd: false }))
+      .catch(err => console.error(err))
+  }
+
   render() {
-    console.log('props in ideas', this.props)
     return (
       <div>
         <h2 className='center'>All The Ideas</h2>
@@ -31,7 +44,7 @@ export default class extends React.Component {
         </div>
         <div className='col-lg-12'>
           {
-            this.state.showAdd ? <AddIdea /> : <div></div>
+            this.state.showAdd ? <AddIdea handleSubmitAdd={this.handleSubmitAdd} /> : <div></div>
           }
         </div>
         <table className="table table-striped table-hover table-bordered table-padding center">
@@ -53,62 +66,13 @@ export default class extends React.Component {
                     <td>{idx}</td>
                     <td>{idea.category}</td>
                     <td>{idea.name}</td>
-                    <td>{idea.start} to {idea.end}</td>
+                    <td>{strftime('%a, %D %l:%M %P', new Date(idea.start))} to {strftime('%a, %D %l:%M %P', new Date(idea.end))}</td>
                     <td>{idea.where}</td>
                     <td>{idea.price}</td>
                   </tr>
                 )
               } )
             }
-            
-            <tr>
-              <td>1</td>
-              <td>Column content</td>
-              <td>Column content</td>
-              <td>Column content</td>
-              <td>Column content</td>
-              <td>Column content</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Column content</td>
-              <td>Column content</td>
-              <td>Column content</td>
-              <td>Column content</td>
-              <td>Column content</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Column content</td>
-              <td>Column content</td>
-              <td>Column content</td>
-              <td>Column content</td>
-              <td>Column content</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Column content</td>
-              <td>Column content</td>
-              <td>Column content</td>
-              <td>Column content</td>
-              <td>Column content</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Column content</td>
-              <td>Column content</td>
-              <td>Column content</td>
-              <td>Column content</td>
-              <td>Column content</td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>Column content</td>
-              <td>Column content</td>
-              <td>Column content</td>
-              <td>Column content</td>
-              <td>Column content</td>
-            </tr>
           </tbody>
         </table>
       </div>

@@ -1,33 +1,16 @@
 import React from 'react'
-import store from '../store'
-import {stockIdeas} from '../reducers/idea'
-import axios from 'axios'
 
 export default class extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-
-    }
-  }
-
-  handleInput(evt) {
+  handleInput = (evt) => {
     evt.preventDefault()
     this.setState({
       [evt.target.name]: evt.target.value
     })
   }
 
-  handleSubmit(evt) {
+  handleSubmit = (evt) => {
     evt.preventDefault()
-    console.log(this.state)
-    axios.post('/api/ideas', this.state)
-      .then(idea => {
-        axios.get('/api/ideas')
-          .then(ideas => store.dispatch(stockIdeas(ideas.data)))
-          .catch(err => console.error(err))
-      })
-      .catch(err => console.error(err))
+    this.props.handleSubmitAdd(this.state)
   }
 
   render() {
@@ -36,7 +19,8 @@ export default class extends React.Component {
         <form>
           <div className='form-group new-line'>
             <label className='control-label'><strong>Category</strong></label>
-            <select className='form-group new-line' id="select">
+            <select name='category' onChange={this.handleInput} className='form-group new-line' id="select">
+              <option></option>
               <option>Museum</option>
               <option>Arts</option>
               <option>Shopping</option>
@@ -48,25 +32,25 @@ export default class extends React.Component {
           </div>
           <div className='form-group new-line'>
             <label className='control-label'><strong>Name</strong></label>
-            <input type='text' name='name' className='form-control' />
+            <input type='text' name='name' onChange={this.handleInput} className='form-control' />
           </div>
           <div className='form-group new-line'>
             <h3 className='control-label'><strong>When</strong></h3>  
             <label className='control-label'><em>Start</em></label>            
-            <input type='datetime-local' name='name' className='form-control' />
+            <input type='datetime-local' name='start' onChange={this.handleInput} className='form-control' />
             <label className='control-label'><em>End</em></label>
-            <input type='datetime-local' name='name' className='form-control' />            
+            <input type='datetime-local' name='end' onChange={this.handleInput} className='form-control' />            
           </div>
           <div className='form-group new-line'>
             <label className='control-label'><strong>Where</strong></label>
-            <input type='text' name='name' className='form-control' />
+            <input type='text' name='where' onChange={this.handleInput} className='form-control' />
           </div>
           <div className='form-group new-line'>
             <label className='control-label'><strong>Price</strong></label>
-            <input type='text' name='name' className='form-control' />
+            <input type='text' name='price' onChange={this.handleInput} className='form-control' />
           </div>
           <div className='center'>
-            <button className='btn btn-warning signup-btn'>Add Idea</button>
+            <button onClick={this.handleSubmit} className='btn btn-warning signup-btn'>Add Idea</button>
           </div>
         </form>
       </div>
