@@ -33,6 +33,7 @@ export const logout = () =>
   dispatch =>
     axios.post('/api/auth/logout')
       .then(() => dispatch(whoami()))
+      .then(() => browserHistory.push('/home'))
       .catch(err => console.error(err))
       
 export const whoami = () =>
