@@ -19,15 +19,13 @@ export default (props) => {
       <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul className="nav navbar-nav">
           <li><Link to='/ideas'>Ideas</Link></li>
-          <li><Link to={`/ideas/${props.user}`}>My Ideas</Link></li>
+          {/*<li><Link to={`/ideas/${props.user}`}>My Ideas</Link></li>*/}
         </ul>
         <ul className="nav navbar-nav navbar-right">
           {
-            props.user ? (
-              <li><Link to='/logout'>Logout</Link></li>
-            ) : (
-              <li><Link to='/login'>LogIn</Link></li>
-            )
+            props.user
+            ? (<li><Link to='/logout'>Logout</Link></li>)
+            : (<li><Link to='/login'>LogIn</Link></li>)
           }
         </ul>
       </div>

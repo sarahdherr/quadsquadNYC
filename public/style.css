@@ -108,6 +108,24 @@ tbody {
     margin-bottom: 3%;
 }
 
+.prof-img {
+    width: 100%
+}
+
+.prof-card {
+    background-color: #E54B4B;
+    border-radius: 200px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.prof-card * {
+    padding-right: 2%;
+    padding-left: 2%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    border-radius: 200px;
+}
+
 
 /*.signup-btn:hover {
     background-color: red;

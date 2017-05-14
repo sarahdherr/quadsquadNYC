@@ -15,24 +15,20 @@ import NotFound from './components/NotFound'
 import Home from './components/Home'
 import IdeasContainer from './containers/IdeasContainer'
 import AppContainer from './containers/AppContainer'
+import ProfileContainer from './containers/ProfileContainer'
 
 import { stockIdeas } from './reducers/idea'
-
-/* const ExampleApp = connect(
-  ({ auth }) => ({ user: auth })
-)(
-  ({ user, children }) =>
-    <div>
-      <nav>
-        {user ? <WhoAmI/> : <Login/>}
-      </nav>
-      {children}
-    </div>
-) */
+import { stockUserIdeas } from './reducers/user'
 
 const onIdeasEnter = (nextRouterState) => {
   axios.get('/api/ideas')
     .then(ideas => store.dispatch(stockIdeas(ideas.data)))
+    .catch(err => console.error(err))
+}
+
+const onProfileEnter = (nextRouterState) => {
+  axios.get(`/api/ideas/${nextRouterState.id}`)
+    .then(ideas => store.dispatch(stockUserIdeas(ideas.data)))
     .catch(err => console.error(err))
 }
 
@@ -45,6 +41,7 @@ render(
         <Route path='/signup' component={SignupContainer} />
         <Route path='/logout' component={LogoutContainer} />
         <Route path='/ideas' component={IdeasContainer} onEnter={onIdeasEnter} />
+        <Route path='/profile/:id' component={ProfileContainer} />
         <IndexRedirect to='/home' />
       </Route>
       <Route path='*' component={NotFound} />

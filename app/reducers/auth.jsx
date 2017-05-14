@@ -27,14 +27,14 @@ export const login = (username, password) =>
       {username, password})
       .then(() => dispatch(whoami()))
       .then(() => browserHistory.push('/ideas'))
-      .catch(() => dispatch(whoami()))
+      .catch(err => console.error(err))
 
 export const logout = () =>
   dispatch =>
     axios.post('/api/auth/logout')
       .then(() => dispatch(whoami()))
-      .catch(() => dispatch(whoami()))
-
+      .catch(err => console.error(err))
+      
 export const whoami = () =>
   dispatch =>
     axios.get('/api/auth/whoami')
