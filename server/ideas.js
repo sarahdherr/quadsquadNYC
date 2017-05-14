@@ -5,7 +5,7 @@ const Thing = db.model('things')
 
 module.exports = require('express').Router()
     .get('/', (req, res, next) => {
-        Thing.findAll()
+        return Thing.findAll()
             .then(ideas => {
                 console.log('these are from the db', ideas)
                 res.send(ideas)
@@ -15,7 +15,7 @@ module.exports = require('express').Router()
     })
 
 .post('/', (req, res, next) => {
-    Thing.create(req.body)
+    return Thing.create(req.body)
         .then(idea => res.sendStatus(204))
         .catch(next)
 })
